@@ -29,7 +29,7 @@ export default class AtomicChar extends Atomic {
     }
 
     // add 0-3 null characters for total number of bits a multiple of 32
-    const byteLength = pad(this.value.length)
+    const byteLength = this.value.length
 
     const buffer = new Uint8Array(byteLength)
 
