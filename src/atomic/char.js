@@ -11,7 +11,7 @@ export default class AtomicChar extends Atomic {
    * @param {number} [value] Initial integer value
    */
   constructor(value) {
-    if (value) {
+    if (!value) {
       throw new Error('Failed to construct AtomicChar')
     }
 
