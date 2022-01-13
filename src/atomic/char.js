@@ -11,7 +11,7 @@ export default class AtomicChar extends Atomic {
    * @param {number} [value] Initial integer value
    */
   constructor(value) {
-    if (!value) {
+    if (isUndefined(value)) {
       throw new Error('Failed to construct AtomicChar')
     }
 
@@ -29,13 +29,12 @@ export default class AtomicChar extends Atomic {
     }
 
     // add 0-3 null characters for total number of bits a multiple of 32
-    const terminated = `${this.value}\u0000`
-    const byteLength = pad(terminated.length)
+    const byteLength = pad(this.value.length)
 
     const buffer = new Uint8Array(byteLength)
 
-    for (let i = 0; i < terminated.length; i += 1) {
-      buffer[i] = terminated.charCodeAt(i)
+    for (let i = 0; i < this.value.length; i += 1) {
+      buffer[i] = this.value
     }
 
     return buffer
