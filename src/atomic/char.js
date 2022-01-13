@@ -1,4 +1,4 @@
-// import { isInt } from '../common/utils'
+import { isUndefined, pad } from '../common/utils'
 
 import Atomic from '../atomic'
 
@@ -23,7 +23,22 @@ export default class AtomicChar extends Atomic {
    * @return {Uint8Array} Packed binary data
    */
   pack() {
-    return super.pack('setInt32', 4)
+    // return super.pack('setInt32', 4)
+    if (isUndefined(this.value)) {
+      throw new Error('OSC AtomicString can not be encoded with empty value')
+    }
+
+    // add 0-3 null characters for total number of bits a multiple of 32
+    const terminated = `${this.value}\u0000`
+    const byteLength = pad(terminated.length)
+
+    const buffer = new Uint8Array(byteLength)
+
+    for (let i = 0; i < terminated.length; i += 1) {
+      buffer[i] = terminated.charCodeAt(i)
+    }
+
+    return buffer
   }
 
   /**
