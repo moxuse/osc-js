@@ -1,4 +1,4 @@
-import { isInt } from '../common/utils'
+// import { isInt } from '../common/utils'
 
 import Atomic from '../atomic'
 
@@ -11,8 +11,8 @@ export default class AtomicChar extends Atomic {
    * @param {number} [value] Initial integer value
    */
   constructor(value) {
-    if (value && !isInt(value)) {
-      throw new Error('OSC AtomicInt32 constructor expects value of type number')
+    if (value) {
+      throw new Error('Failed to construct AtomicChar')
     }
 
     super(value)
