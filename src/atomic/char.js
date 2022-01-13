@@ -27,15 +27,11 @@ export default class AtomicChar extends Atomic {
     if (isUndefined(this.value)) {
       throw new Error('OSC AtomicString can not be encoded with empty value')
     }
-
-    // add 0-3 null characters for total number of bits a multiple of 32
     const byteLength = this.value.length
 
-    const buffer = new Uint8Array(byteLength)
+    const buffer = new Int32Array(byteLength)
 
-    for (let i = 0; i < this.value.length; i += 1) {
-      buffer[i] = this.value
-    }
+    buffer[0] = this.value
 
     return buffer
   }
