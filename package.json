@@ -2,7 +2,7 @@
   "name": "osc-js",
   "version": "2.2.0",
   "description": "OSC library for Node.js and the browser, with customizable Plugin API for WebSocket, UDP or bridge networking",
-  "main": "src/osc.js",
+  "main": "lib/osc.js",
   "scripts": {
     "build": "rollup -c",
     "docs": "esdoc",
