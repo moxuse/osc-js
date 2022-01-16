@@ -127,6 +127,8 @@ export class TypedMessage {
           argument = new AtomicInt32(value)
         } else if (type === 'c') {
           argument = new AtomicChar(value)
+        } else if (type === '[' || type === ']') {
+          // argument = new AtomicChar(value)
         } else if (type === 'h') {
           argument = new AtomicInt64(value)
         } else if (type === 't') {
@@ -143,7 +145,9 @@ export class TypedMessage {
           throw new Error('OSC Message found unknown argument type')
         }
 
-        encoder.add(argument)
+        if (type !== '[' && type !== ']') {
+          encoder.add(argument)
+        }
       })
     }
 

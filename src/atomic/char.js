@@ -1,4 +1,4 @@
-import { isUndefined, pad } from '../common/utils'
+import { isUndefined } from '../common/utils'
 
 import Atomic from '../atomic'
 
@@ -25,15 +25,9 @@ export default class AtomicChar extends Atomic {
   pack() {
     // return super.pack('setInt32', 4)
     if (isUndefined(this.value)) {
-      throw new Error('OSC AtomicString can not be encoded with empty value')
+      throw new Error('OSC AtomicChar can not be encoded with empty value')
     }
-    const byteLength = this.value.length
-
-    const buffer = new Int32Array(byteLength)
-
-    buffer[0] = this.value
-
-    return buffer
+    return super.pack('setInt32', 4)
   }
 
   /**
